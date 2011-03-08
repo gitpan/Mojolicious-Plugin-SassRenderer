@@ -1,6 +1,6 @@
 package Mojolicious::Plugin::SassRenderer;
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 use warnings;
 use strict;
@@ -45,36 +45,35 @@ Mojolicious::Plugin::SassRenderer - Sass Renderer Plugin for Mojolicious
 
 Renders Sass files into CSS for your Mojolicious web-apps
 
-package MyApp;
-use Mojo::Base 'Mojolicious';
+  package MyApp;
+  use Mojo::Base 'Mojolicious';
+  
+  sub startup {
+      $self = shift;
+      $self->plugin('sass_renderer'); 
+  }
 
-sub startup {
-    $self = shift;
-    $self->plugin('sass_renderer'); 
-}
-
-1;
-
-
-# template
-<!doctype html><html>
-  <head>
-    <style type="text/css">
-      <%== include 'stylesheets/main', format => 'txt', handler => 'sass' %>
-    </style>
-  </head>
-  <body>
-  </body>
-</html>
+  1;
 
 
-# sass: MOJO_HOME/templates/stylesheets/main.txt.sass
+  # template
+  <!doctype html><html>
+    <head>
+      <style type="text/css">
+        <%== include 'stylesheets/main', format => 'txt', handler => 'sass' %>
+      </style>
+    </head>
+    <body>
+    </body>
+  </html>
 
-$menuColor: #eee
 
-#menubar
-  background-color: $menuColor
-  width: 75%
+  # sass: MOJO_HOME/templates/stylesheets/main.txt.sass
+  $menuColor: #eee
+
+  #menubar
+    background-color: $menuColor
+    width: 75%
 
 
 =head1 DESCRIPTION
@@ -83,7 +82,7 @@ Takes Sass formatted files and renderers them in CSS for your web-app.
 
 =head1 VERSION
 
-Version 0.01
+Version 0.02
 
 =head1 AUTHOR
 
